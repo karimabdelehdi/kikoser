@@ -11,8 +11,12 @@ app.use(cors());
 app.use("/prod", routerProd);
 app.use("/user",routerUser); 
 
+const PORT = process.env.PORT || 8080;
 
-const PORT = process.env.PORT || 8080 ;
+app.get('/', (req, res) => {
+  res.send('Hello, world!');
+});
+
 app.use(express.urlencoded({ extended: false }));
 const db = 'mongodb+srv://karim:0000@ak.wogwya2.mongodb.net/?retryWrites=true&w=majority';
 mongoose.set('strictQuery', true)
