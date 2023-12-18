@@ -2,21 +2,6 @@ const express = require('express');
 const Prod = require('./model');
 
 
-const timeoutWrapper = (milliseconds, asyncFn) => {
-  return async (req, res, next) => {
-    const timeout = setTimeout(() => {
-      res.status(500).json({ error: 'Request timed out' });
-    }, milliseconds);
-
-    try {
-      await asyncFn(req, res, next);
-    } catch (err) {
-      res.status(500).json({ error: err.message });
-    } finally {
-      clearTimeout(timeout);
-    }
-  };
-};
 
 // Create a new rental house
 
@@ -79,4 +64,4 @@ async function DeleteProd (req, res) {
 };
 
 
-module.exports = {createProd, getAllProd, findByIdProd, PutProd,DeleteProd,timeoutWrapper};
+module.exports = {createProd, getAllProd, findByIdProd, PutProd,DeleteProd};
